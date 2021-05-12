@@ -11,3 +11,8 @@ class TaskViewList(generics.ListAPIView):
 class TaskViewCreate(generics.CreateAPIView):
     serializer_class = TaskSerializerCreate
     queryset = Task.objects.all()
+
+class UserViewCreate(generics.CreateAPIView):
+
+    serializer_class = UserSerializer
+    
