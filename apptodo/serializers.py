@@ -6,3 +6,9 @@ class TaskSerializerCreate(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+
+class TaskSerializerList(serializers.ModelSerializer):
+
+    class Meta:
+        model = Task
+        fields = '__all__'
