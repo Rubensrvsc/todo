@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
 
-
 class TaskSerializerCreate(serializers.ModelSerializer):
 
     class Meta:
@@ -29,3 +28,10 @@ class UserSerializer(serializers.ModelSerializer):
         email=validated_data['email'],password=validated_data['password'])
         user.save()
         return user
+    
+    def to_representation(self, instance):
+        return {
+            "nome":instance.username,
+            "email":instance.email,
+            "password":instance.password
+        }
