@@ -1,8 +1,10 @@
 from django.urls import path,include
 from .views import *
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path('',TaskViewCreate.as_view(),name="task-create"),
     path('list-task',TaskViewList.as_view(),name="task-list"),
-    path('create-user',UserViewCreate.as_view(),name="create-user")
+    path('create-user',UserViewCreate.as_view(),name="create-user"),
+    path('obtain-token',views.obtain_auth_token,name="obtain-token"),
 ]

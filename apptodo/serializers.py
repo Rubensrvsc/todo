@@ -7,6 +7,9 @@ class TaskSerializerCreate(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ['name','description']
+    
+    def create(self, validated_data):
+        return super().create(validated_data)
 
 class TaskSerializerList(serializers.ModelSerializer):
 
