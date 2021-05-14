@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from django.db.models import Q
 
 class TaskSerializerCreate(serializers.ModelSerializer):
 
@@ -27,6 +29,8 @@ class UserSerializer(serializers.ModelSerializer):
         user =  User(username=validated_data['username'],
         email=validated_data['email'],password=validated_data['password'])
         user.save()
+        usuario = User.objects.get(pk=user.pk)
+        Token.objects.create(user=usuario)
         return user
     
     def to_representation(self, instance):
@@ -35,3 +39,10 @@ class UserSerializer(serializers.ModelSerializer):
             "email":instance.email,
             "password":instance.password
         }
+
+class ObterTokenSerializer(serializers.Serializer):
+
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+
