@@ -16,14 +16,16 @@ Testar a criação e leitura de tarefas
 
 class TaskViewList(generics.ListAPIView):
     serializer_class = TaskSerializerList
-    queryset = Task.objects.all()
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Task.objects.filter(usuario=self.request.user)
 
 
 class TaskViewCreate(generics.CreateAPIView):
     serializer_class = TaskSerializerCreate
+    queryset = Task.objects.all()
     permission_classes = [permissions.IsAuthenticated]
-
 
 class UserViewCreate(generics.CreateAPIView):
     queryset = User.objects.all()
