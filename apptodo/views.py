@@ -5,6 +5,7 @@ from .models import *
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http.response import HttpResponse
 # Create your views here.
 """
 TODO:
@@ -18,9 +19,11 @@ class TaskViewList(generics.ListAPIView):
     queryset = Task.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
+
 class TaskViewCreate(generics.CreateAPIView):
     serializer_class = TaskSerializerCreate
-    queryset = Task.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+
 
 class UserViewCreate(generics.CreateAPIView):
     queryset = User.objects.all()
