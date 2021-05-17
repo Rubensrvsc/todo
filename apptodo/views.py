@@ -29,8 +29,11 @@ class TaskViewCreate(generics.CreateAPIView):
 
 class TaskRetrieve(generics.RetrieveAPIView):
     serializer_class = TaskSerializerCreate
-    queryset = Task.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
     lookup_field = 'id'
+
+    def get_queryset(self):
+        return Task.objects.filter(usuario=self.request.user)
 
 class UserViewCreate(generics.CreateAPIView):
     queryset = User.objects.all()
