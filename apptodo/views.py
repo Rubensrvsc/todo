@@ -43,6 +43,10 @@ class TaskDelete(generics.DestroyAPIView):
     def get_queryset(self):
         return Task.objects.filter(usuario=self.request.user)
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        return Response(instance.delete(),status=status.HTTP_200_OK)
+
 class UserViewCreate(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
