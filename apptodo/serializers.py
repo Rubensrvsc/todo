@@ -16,6 +16,8 @@ class TaskSerializerCreate(serializers.ModelSerializer):
 
 class TaskSerializerList(serializers.ModelSerializer):
 
+    usuario = serializers.PrimaryKeyRelatedField(source='usuario.username',queryset=User.objects.all())
+
     class Meta:
         model = Task
         fields = ['name','description','usuario']
