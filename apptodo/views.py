@@ -44,7 +44,7 @@ class TaskDelete(generics.DestroyAPIView):
         return Task.objects.filter(usuario=self.request.user)
 
     def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
+        instance = self.get_object()      
         return Response(instance.delete(),status=status.HTTP_200_OK)
 
 class UserViewCreate(generics.CreateAPIView):
