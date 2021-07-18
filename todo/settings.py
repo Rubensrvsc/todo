@@ -39,10 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'apptodo',
     'gunicorn',
     'rest_framework',
     'rest_framework.authtoken',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200"
 ]
 
 REST_FRAMEWORK = {
